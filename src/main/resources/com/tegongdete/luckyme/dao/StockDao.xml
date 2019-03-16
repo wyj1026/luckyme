@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tegongdete.luckyme.dao.StockDao">
+    <update id="sale" parameterType="com.tegongdete.luckyme.bean.Stock">
+        update stock
+        <set>
+            sale = sale + 1,
+            count = count - 1,
+            version = version + 1
+        </set>
+
+        WHERE id = #{id}
+
+
+    </update>
+
+</mapper>
