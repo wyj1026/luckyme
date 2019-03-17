@@ -3,8 +3,9 @@ package com.tegongdete.luckyme.service;
 import com.tegongdete.luckyme.bean.Order;
 import com.tegongdete.luckyme.bean.Stock;
 import com.tegongdete.luckyme.dao.OrderDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderService {
@@ -17,23 +18,26 @@ public class OrderService {
         this.orderDao = orderDao;
     }
 
-    public int tryCreateOrder(int stockId) {
+    //@Transactional(isolation = Isolation.REPEATABLE_READ)
+    public int tryCreateOrder(int stockId) throws Exception{
         Stock stock = stockService.getStock(stockId);
-        if (stock.getCount() > 0) {
-            System.out.println(stock.getVersion());
+        if (stock.getCount() == stock.getSale()) {
+            throw new Exception("Out of stock!");
+        }
+        else {
             if (1 == stockService.sale(stock)) {
                 createOrder(stock);
-                return 1;
+                return createOrder(stock);
             }
         }
         return 0;
     }
 
-    public void createOrder(Stock stock) {
+    public int createOrder(Stock stock) {
         Order order = new Order();
         order.setName(stock.getName());
         order.setSid(stock.getId());
         order.setTimestamp(String.valueOf(System.currentTimeMillis()));
-        orderDao.addOrder(order);
+        return orderDao.addOrder(order);
     }
 }

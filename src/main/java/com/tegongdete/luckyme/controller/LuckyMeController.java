@@ -23,7 +23,7 @@ public class LuckyMeController {
             orderId = orderService.tryCreateOrder(st);
         }
         catch (Exception e) {
-            logger.info(e.toString());
+            logger.error(e.toString());
         }
         return String.valueOf(orderId);
     }

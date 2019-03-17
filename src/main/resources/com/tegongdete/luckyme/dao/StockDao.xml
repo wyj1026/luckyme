@@ -5,7 +5,6 @@
         update stock
         <set>
             sale = sale + 1,
-            count = count - 1,
             version = version + 1
         </set>
 
