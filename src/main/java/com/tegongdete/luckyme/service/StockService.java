@@ -17,6 +17,10 @@ public class StockService {
         return stockDao.selectById(id);
     }
 
+    public Stock getStockForUpdate(int id) {
+        return stockDao.selectByIdForUpdate(id);
+    }
+
     public int sale(Stock stock) {
         return stockDao.sale(stock);
     }

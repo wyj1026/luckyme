@@ -13,6 +13,9 @@ public interface StockDao {
     @Select({"select ", SELECT_FIELDS, "from", TABLE_NAME, "where id= #{id}"})
     Stock selectById(int id);
 
+    @Select({"select ", SELECT_FIELDS, "from", TABLE_NAME, "where id= #{id} for update"})
+    Stock selectByIdForUpdate(int id);
+
     //@Update({"update ", TABLE_NAME, "set count=count-1, sale=sale+1 where id= #{id}"})
     int sale(Stock stock);
 }

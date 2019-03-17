@@ -17,7 +17,8 @@ public class LuckyMeController {
 
     @RequestMapping(path = {"/lucky"})
     @ResponseBody
-    public String index(int st) {
+    public String index(int st, int usr) {
+        logger.info(String.format("User %d try to buy No.%d, GOOD LUCK!", usr, st));
         int orderId = 0;
         try {
             orderId = orderService.tryCreateOrder(st);
