@@ -8,7 +8,7 @@
             version = version + 1
         </set>
 
-        WHERE id = #{id}
+        WHERE id = #{id} AND version = #{version}
 
 
     </update>
