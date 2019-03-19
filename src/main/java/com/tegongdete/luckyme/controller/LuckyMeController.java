@@ -28,4 +28,10 @@ public class LuckyMeController {
         }
         return String.valueOf(orderId);
     }
+
+    @RequestMapping(path = {"/finished"})
+    @ResponseBody
+    public String finished() {
+        return "Thank you for participation！";
+    }
 }
