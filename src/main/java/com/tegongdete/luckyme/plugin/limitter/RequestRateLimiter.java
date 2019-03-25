@@ -1,5 +1,5 @@
 package com.tegongdete.luckyme.plugin.limitter;
 
-public interface RequestNumLimitter {
+public interface RequestRateLimiter {
     boolean isAccessible();
 }

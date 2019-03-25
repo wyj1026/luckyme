@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 
 @Component
-public class RedisNumLimitter implements RequestNumLimitter {
-    private static final Logger logger = LoggerFactory.getLogger(RequestNumLimitter.class);
+public class RedisRateLimiter implements RequestRateLimiter {
+    private static final Logger logger = LoggerFactory.getLogger(RequestRateLimiter.class);
 
     private volatile int limit;
     private JedisService jedisService;
     private String script;
 
-    public RedisNumLimitter(@Value("${requestLimit}") int limit, @Value("${limitscript}") String scriptName, JedisService jedisService) {
+    public RedisRateLimiter(@Value("${requestLimit}") int limit, @Value("${limitscript}") String scriptName, JedisService jedisService) {
         this.limit = limit;
         this.jedisService = jedisService;
         this.script = FileUtil.loadFile(scriptName);
