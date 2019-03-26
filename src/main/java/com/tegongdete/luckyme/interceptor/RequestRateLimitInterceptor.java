@@ -38,7 +38,7 @@ public class RequestRateLimitInterceptor extends HandlerInterceptorAdapter {
             throw new NullPointerException("requestRateLimitter is null");
         }
         if (!requestNumLimitter.isAccessible()) {
-            logger.warn("Max Request Limit Reached!!!!");
+            logger.debug("Max Request Limit Reached!!!!");
             response.sendRedirect("/finished");
             return false;
         }

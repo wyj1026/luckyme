@@ -12,6 +12,7 @@ public class TokenBucketRateLimiter implements RequestRateLimiter {
         rateLimiter = RateLimiter.create(permitsPerSecond);
     }
 
+    @Override
     public boolean isAccessible() {
         return rateLimiter.tryAcquire();
     }
