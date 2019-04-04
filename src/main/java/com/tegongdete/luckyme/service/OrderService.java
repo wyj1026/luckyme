@@ -13,9 +13,12 @@ public class OrderService {
 
     private OrderDao orderDao;
 
-    public OrderService(StockService stockService, OrderDao orderDao) {
+    private OrderProduceService orderProduceService;
+
+    public OrderService(StockService stockService, OrderDao orderDao, OrderProduceService orderProduceService) {
         this.stockService = stockService;
         this.orderDao = orderDao;
+        this.orderProduceService = orderProduceService;
     }
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
@@ -37,6 +40,7 @@ public class OrderService {
         order.setName(stock.getName());
         order.setSid(stock.getId());
         order.setTimestamp(String.valueOf(System.currentTimeMillis()));
-        return orderDao.addOrder(order);
+        return orderProduceService.produceOrder(order);
+        //return orderDao.addOrder(order);
     }
 }

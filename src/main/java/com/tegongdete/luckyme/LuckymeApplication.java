@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class LuckymeApplication {
     public static void main(String[] args) {
-
         SpringApplication.run(LuckymeApplication.class, args);
     }
 
