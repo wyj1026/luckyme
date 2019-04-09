@@ -3,7 +3,6 @@ package com.tegongdete.luckyme.service;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DeliverCallback;
 import com.tegongdete.luckyme.bean.Order;
 import com.tegongdete.luckyme.util.ProtoUtil;
 import org.slf4j.Logger;
@@ -36,7 +35,7 @@ public class OrderProduceService {
             return 1;
         }
         catch (Exception e)  {
-            logger.error("Failed to get rabbitmq connection! msg:" +  e.getMessage());
+            logger.error("Failed to publish msg:" +  e.getMessage());
         }
         return 0;
     }
